@@ -12,9 +12,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   airflow:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: quanghocviec/superstore-airflow:v1.0.4
     container_name: airflow_container
     env_file:
       - .env
