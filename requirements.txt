@@ -1,8 +1,8 @@
 apache-airflow==2.9.1
 
-pandas
-sqlalchemy
-psycopg2-binary
+pandas==2.1.4
+sqlalchemy==1.4.54
+psycopg2-binary==2.9.9
 
-apache-airflow-providers-postgres
-astronomer-cosmos[dbt-postgres]
+apache-airflow-providers-postgres==5.11.1
+astronomer-cosmos[dbt-postgres]==1.4.3
