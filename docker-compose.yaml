@@ -1,4 +1,3 @@
-
 services:
   postgres:
     image: postgres:14
@@ -22,11 +21,13 @@ services:
     environment:
       - AIRFLOW__CORE__EXECUTOR=SequentialExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
+      - AIRFLOW__COSMOS__USE_DATASET_AIRFLOW3_URI_STANDARD=1
     volumes:
       - ./airflow/dags:/opt/airflow/dags
       - ./data:/opt/airflow/data
-      - ./airflow/dbt/superstore_dbt:/usr/app/superstore_dbt
-      - ./airflow/dbt:/opt/airflow/dbt 
+      - ./dbt/superstore_dbt:/usr/app/superstore_dbt
+      - ./dbt:/opt/airflow/dbt
+      - ./dbt/profiles.yml:/opt/airflow/.dbt/profiles.yml
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "8080:8080"
@@ -34,10 +35,10 @@ services:
       - postgres
     command: >
       bash -c "
-        airflow db init &&
         airflow db migrate &&
-        airflow users create --username admin --password admin --firstname admin --lastname admin --role Admin --email admin@example.com &&
-        airflow scheduler & airflow webserver
+        airflow users create --username admin --password admin --firstname admin --lastname admin --role Admin --email admin@example.com || true &&
+        airflow scheduler &
+        exec airflow webserver
       "
     networks:
       - my-networks
