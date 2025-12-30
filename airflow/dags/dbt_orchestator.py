@@ -18,7 +18,7 @@ with DAG(
 ) as dag:
 
     # Paths inside Airflow container
-    DBT_PROJECT_DIR = "/usr/app/superstore_dbt"
+    DBT_PROJECT_DIR = "/opt/airflow/dbt/superstore_dbt"
 
     project_cfg = ProjectConfig(
         dbt_project_path=DBT_PROJECT_DIR
