@@ -102,8 +102,8 @@ This structure enables fast and flexible analytical queries.
 
 > Example insights:
 
-* Sales & profit trends over time!
-[Dashboard](image-1.png)
+* Sales & profit trends over time
+![Dashboard](image-1.png)
 * Top customers and products
 ![Dashboard](image-2.png)
 * Performance by region and category
